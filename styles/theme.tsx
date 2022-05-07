@@ -23,9 +23,9 @@ export const theme = {
     },
   },
   colors: {
-    primary: "#F231A5",
-    secondary: "#3CD3C1",
-    mainBg: "#06092B",
+    primary: "#4e31f2",
+    secondary: "#3c64d3",
+    mainBg: "#ecedf3",
     white: "#FAFAFA",
     lightBg: "#F2F2F2",
     black: "#030517",

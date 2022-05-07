@@ -1,13 +1,34 @@
-import type { NextPage } from "next"
-import styled from "styled-components"
+import { getProductWithLimit } from "../api/services"
+import Header from "../components/Header"
+import { Wrapper } from "../components/Wrapper"
+import { IProduct } from "../Types/IProduct"
+import * as S from "../styles/homeStyles"
+import Link from "next/link"
 
-const Main = styled.main`
-  background-color: red;
-  font-size: 2rem;
-`
+export async function getStaticProps() {
+  const products = await getProductWithLimit()
+  return { props: { products }, revalidate: 24 * 3600 }
+}
 
-const Home: NextPage = () => {
-  return <Main>Olá next</Main>
+interface IHomeProps {
+  products: IProduct[]
+}
+
+const Home = ({ products }: IHomeProps) => {
+  return (
+    <Wrapper>
+      <Header>Loja X</Header>
+      <S.ListWrapper>
+        {products.map((product) => (
+          <li key={`product_${product.id}`}>
+            <Link href={`/product/${product.id}`}>
+              <a>{product.title}</a>
+            </Link>
+          </li>
+        ))}
+      </S.ListWrapper>
+    </Wrapper>
+  )
 }
 
 export default Home

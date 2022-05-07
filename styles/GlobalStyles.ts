@@ -15,6 +15,17 @@ export const GlobalStyles = createGlobalStyle`
       }
     }
 
+    ul {
+      list-style-type: none;
+    }
+
+    a,
+    a:hover,
+    a:visited,
+    a:active {
+      text-decoration: none;
+      color: ${theme.colors.black};
+    }
     html {
       font-size: 62.5%;
     }
@@ -22,6 +33,7 @@ export const GlobalStyles = createGlobalStyle`
     body {
       font-family: ${theme.font.family};
       font-size: ${theme.font.sizes.medium};
+      background-color: ${theme.colors.mainBg};
       #root {
         height: 100vh;
         width: 100vw;
