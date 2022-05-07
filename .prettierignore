@@ -1,4 +1,6 @@
 build/
+.next/
+.vscode/
 node_modules/
 generators/
 internals/generators/
