@@ -17,14 +17,11 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     revalidate: 10,
-    props: {},
+    props: { id: params?.id },
   }
 }
 
-function Product() {
-  const router = useRouter()
-  const { id } = router.query
-
+function Product({ id }: { id: string }) {
   const { data, error } = useSWR(
     `/product/${id}`,
     async () => {
@@ -35,7 +32,12 @@ function Product() {
       }
       return data
     },
-    { revalidateOnFocus: true, revalidateOnReconnect: true },
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: true,
+      revalidateOnReconnect: true,
+      refreshInterval: 60000,
+    },
   )
   if (!error && !data) {
     return (
