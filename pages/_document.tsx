@@ -6,6 +6,7 @@ import Document, {
   Main,
   NextScript,
 } from "next/document"
+import { Fragment } from "react"
 
 import { ServerStyleSheet } from "styled-components"
 
@@ -27,10 +28,10 @@ export default class MyDocument extends Document {
       return {
         ...initialProps,
         styles: [
-          <>
+          <Fragment key="styles-to-styled-components">
             {initialProps.styles}
             {sheet.getStyleElement()}
-          </>,
+          </Fragment>,
         ],
       }
     } finally {
